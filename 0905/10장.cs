@@ -9,23 +9,23 @@ namespace _0905
 {
     class MainApp10
     {
-        public static void Main()
-        {
-            Matrix first = new Matrix(3, 2, 1, 4);
-            Matrix second = new Matrix(9, 2, 1, 7);
+        //public static void Main()
+        //{
+        //    Matrix first = new Matrix(3, 2, 1, 4);
+        //    Matrix second = new Matrix(9, 2, 1, 7);
 
-            Matrix result = first * second;
-            Console.WriteLine(result);
+        //    Matrix result = first * second;
+        //    Console.WriteLine(result);
 
-            // 5. 다음과 같은 결과를 출력하도록 아래의 코드를 완성하세요.
+        //    // 5. 다음과 같은 결과를 출력하도록 아래의 코드를 완성하세요.
 
-            Hashtable ht = new Hashtable();
-            ht["회사"] = "Microsoft";
-            ht["URL"] = "www.microsoft.com";
+        //    Hashtable ht = new Hashtable();
+        //    ht["회사"] = "Microsoft";
+        //    ht["URL"] = "www.microsoft.com";
 
-            Console.WriteLine($"회사 : {ht["회사"]}");
-            Console.WriteLine($"URL : {ht["URL"]}");
-        }
+        //    Console.WriteLine($"회사 : {ht["회사"]}");
+        //    Console.WriteLine($"URL : {ht["URL"]}");
+        //}
 
         // 1. 다음 배열 선언 문장 중 올바르지 않은 것을 고르세요.
         // 1번 int[]에 string 값을 담고 있음

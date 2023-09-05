@@ -14,7 +14,26 @@
 // 3 참조 형식이다. / 값 형식이다
 
 // 5. 다음 코드를 컴파일 및 실행이 가능하도록 수정하세요.
-// 프로퍼티로 변경해준다.
+struct ACSetting
+{
+    public double currentInCelsius;
+    public double target;
+
+    public readonly double GetFahrenheit() => currentInCelsius * 1.8 + 32;
+}
+
+class MainApp
+{
+    static void Main()
+    {
+        ACSetting acs;
+        acs.currentInCelsius = 25;
+        acs.target = 25;
+
+        Console.WriteLine($"{acs.GetFahrenheit()}");
+        Console.WriteLine($"{acs.target}");
+    }
+}
 
 // 6. 다형성은 무엇이며, 오버라이딩과 무슨 관계가 있는지 설명하세요.
 // 다형성은 하나의 타입이 여러한 성질을 가진것을 의미하며,
