@@ -1,0 +1,14 @@
+C:\C#\0905\bin\Debug\net6.0\0905.exe
+C:\C#\0905\bin\Debug\net6.0\0905.deps.json
+C:\C#\0905\bin\Debug\net6.0\0905.runtimeconfig.json
+C:\C#\0905\bin\Debug\net6.0\0905.dll
+C:\C#\0905\bin\Debug\net6.0\0905.pdb
+C:\C#\0905\obj\Debug\net6.0\0905.GeneratedMSBuildEditorConfig.editorconfig
+C:\C#\0905\obj\Debug\net6.0\0905.AssemblyInfoInputs.cache
+C:\C#\0905\obj\Debug\net6.0\0905.AssemblyInfo.cs
+C:\C#\0905\obj\Debug\net6.0\0905.csproj.CoreCompileInputs.cache
+C:\C#\0905\obj\Debug\net6.0\0905.dll
+C:\C#\0905\obj\Debug\net6.0\refint\0905.dll
+C:\C#\0905\obj\Debug\net6.0\0905.pdb
+C:\C#\0905\obj\Debug\net6.0\0905.genruntimeconfig.cache
+C:\C#\0905\obj\Debug\net6.0\ref\0905.dll
