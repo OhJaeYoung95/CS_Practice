@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 public class MyArray
 {
-    public static void Reverse(int[] array)
+    public static void Reverse<T> (T[] array) where T : struct
     {
         //for(int i = 0; i < (array.Length - 1)/ 2; ++i)
         //{
@@ -16,14 +16,15 @@ public class MyArray
         //    array[i] = array[array.Length - 1 - i];
         //    array[array.Length - 1 - i] = temp;
         //}
-        for(int i = 0; i < (array.Length - 1) / 2; ++i)
-        {            int temp = array[i];
+        for (int i = 0; i < (array.Length - 1) / 2; ++i)
+        {
+            int temp = array[i];
             array[i] = array[^(i + 1)];
             array[^(i + 1)] = temp;
         }
     }
 
-    public static void Reverse(int[] array, int index, int length)
+    public static void Reverse<T> (T[] array, T index, int length) where T : struct
     {
         //for (int i = 0; i < length / 2; ++i)
         //{
@@ -34,13 +35,13 @@ public class MyArray
 
         for (int i = 0; i < length / 2; ++i)
         {
-            int temp = array[i + index];
+            T temp = array[i + index];
             array[i + index] = array[i + index + length - 1];
             array[i + index + length - 1] = temp;
         }
     }
 
-    public static void Fill(int[] array, int value, int startIndex, int count)
+    public static void Fill<T> (T[] array, T value, T startIndex, T count) where T : struct
     {
         for (int i = startIndex; i < startIndex + count; i++)
         {
@@ -48,7 +49,7 @@ public class MyArray
         }
     }
 
-    public static void Copy(int[] sourceArray, int[] destinationArray, int length)
+    public static void Copy<T> (T[] sourceArray, T[] destinationArray, T length) where T : struct
     {
         for (int i = 0; i < length; i++)
         {
@@ -56,12 +57,12 @@ public class MyArray
         }
     }
 
-    public static void Resize(ref int[] array, int newSize)
+    public static void Resize<T> (ref T[] array, T newSize) where T :struct
     {
-        if(array.Length < newSize)
+        if (array.Length < newSize)
         {
             int[] tempArray = new int[newSize];
-            
+
             for (int i = 0; i < array.Length; ++i)
             {
                 tempArray[i] = array[i];
@@ -70,24 +71,25 @@ public class MyArray
         }
     }
 
-    public static void Clear(int[] array)
+    public static void Clear<T> (T[] array)
     {
-        for(int i = 0; i < array.Length; ++i)
+        for (int i = 0; i < array.Length; ++i)
         {
-            array[i] = 0;
+            array[i] = default;
         }
     }
 
-    public static void Clear(int[] array, int index, int length)
+
+    public static void Clear<T> (T[] array, int index, int length)
     {
         for (int i = index; i < index + length; ++i)
         {
-            array[i] = 0;
+            array[i] = default;
         }
 
     }
 
-    public static void Sort(int[] array)
+    public static void Sort<T> (T[] array) where T : struct
     {
         for (int i = 0; i < array.Length; ++i)
         {
@@ -95,7 +97,7 @@ public class MyArray
             {
                 if (array[j] > array[j + 1])
                 {
-                    int temp = array[j];
+                    T temp = array[j];
                     array[j] = array[j + 1];
                     array[j + 1] = temp;
                 }
@@ -103,19 +105,19 @@ public class MyArray
         }
     }
 
-    public static int IndexOf(int[] array, int value)
+    public static T IndexOf<T> (T[] array, T value) where T : struct
     {
-        for(int i =0; i < array.Length - 1; ++i)
+        for (int i = 0; i < array.Length - 1; ++i)
             if (array[i] == value) return i;
         return -1;
     }
 
-    public static int BinarySearch(int[] array, int value)
+    public static T BinarySearch<T> (T[] array, T value) where T : struct
     {
         return BinarySearchRecursive(array, value, 0, array.Length - 1);
     }
 
-    private static int BinarySearchRecursive(int[] array, int value, int startIndex, int endIndex)
+    private static T BinarySearchRecursive(T[] array, T value, int startIndex, int endIndex) where  T : struct
     {
         if (startIndex > endIndex)
         {
