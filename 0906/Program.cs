@@ -33,14 +33,32 @@
             //Console.WriteLine(MyArray.FindLastIndex(findLastIndex1, IsEven));
 
             int[] findLastIndex2 = { 1, 2, 3, 4, 5, 6, 7, 8 };
-            Console.WriteLine(MyArray.FindLastIndex(findLastIndex2, 1, IsEven));
+            //Console.WriteLine(MyArray.FindLastIndex(findLastIndex2, 1, IsEven));
 
+            int[] findLastIndex3 = { 1, 2, 3, 5, 5, 5, 6, 7, 8 };
+            //Console.WriteLine(MyArray.FindLastIndex(findLastIndex3, 3, 4,IsEven));
 
+            int[] forEach = { 1, 2, 4, 8 };
+            //MyArray.ForEach(forEach, Square);
+
+            int[] intsSort = { 5, 2, 9, 1, 5, 6 };
+            //MyArray.Sort(intsSort, null, 0, intsSort.Length, );
+            foreach (int i in intsSort) Console.WriteLine(i);
         }
 
         static bool IsEven(int num)
         {
             return num % 2 == 0;
         }
+
+        static void Square(int val)
+        {
+            Console.WriteLine($"{val} squared = {val * val}");
+        }
+
+        //public int Compare<T> (T x, T y) where T : IComparer<T>
+        //{
+        //    return x.Compare(x, y);
+        //}
     }
 }

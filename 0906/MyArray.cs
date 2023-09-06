@@ -202,7 +202,91 @@ public class MyArray
         return -1;
     }
 
+    public static int FindLastIndex<T>(T[] array, int startIndex, int count, Predicate<T> match)
+    {
+        for (int i = array.Length - 1 - startIndex; i >= array.Length - 1 - count - startIndex; --i)
+            if (match(array[i])) return i;
 
+        return -1;
+    }
+
+    public static void ForEach<T>(T[] array, Action<T> action)
+    {
+        foreach(T item in array) action(item);
+    }
+
+    public static void Sort(Array keys, Array? items, int index, int length, System.Collections.IComparer? comparer)
+    {
+        // index와 length 매개변수를 사용하여 정렬 범위를 지정
+        for (int i = index; i < index + length - 1; ++i)
+        {
+            for (int j = index; j < index + length - i - 1; ++j)
+            {
+                // comparer를 사용하여 요소를 비교
+                int compareResult = comparer != null
+                    ? comparer.Compare(keys.GetValue(j), keys.GetValue(j + 1))
+                    : Comparer.Default.Compare(keys.GetValue(j), keys.GetValue(j + 1));
+
+                // compareResult가 양수면 두 요소를 교환
+                if (compareResult > 0)
+                {
+                    // keys 배열에서 요소 교환
+                    object tempKey = keys.GetValue(j);
+                    keys.SetValue(keys.GetValue(j + 1), j);
+                    keys.SetValue(tempKey, j + 1);
+
+                    // items 배열도 요소 교환 (items 배열이 null이 아닌 경우에만)
+                    if (items != null)
+                    {
+                        object tempItem = items.GetValue(j);
+                        items.SetValue(items.GetValue(j + 1), j);
+                        items.SetValue(tempItem, j + 1);
+                    }
+                }
+            }
+        }
+    }
+
+
+    public static void Sort(Array array, int index, int length, System.Collections.IComparer? comparer)
+    {
+
+    }
+
+    public static void Sort(Array array, System.Collections.IComparer? comparer)
+    {
+
+    }
+
+    public static void Sort(Array keys, Array? items, System.Collections.IComparer? comparer)
+    {
+
+    }
+
+    public static void Sort<T>(T[] array, System.Collections.Generic.IComparer<T>? comparer)
+    {
+
+    }
+
+    public static void Sort<T>(T[] array, Comparison<T> comparison)
+    {
+
+    }
+
+    public static void Sort<T>(T[] array, int index, int length, System.Collections.Generic.IComparer<T>? comparer)
+    {
+
+    }
+
+    public static void Sort<TKey, TValue>(TKey[] keys, TValue[]? items, System.Collections.Generic.IComparer<TKey>? comparer)
+    {
+
+    }
+
+    public static void Sort<TKey, TValue>(TKey[] keys, TValue[]? items, int index, int length, System.Collections.Generic.IComparer<TKey>? comparer)
+    {
+
+    }
     //public static int BinarySearch<T>(T[] array, T value)
     //{
     //    return BinarySearchRecursive(array, value, 0, array.Length - 1);
