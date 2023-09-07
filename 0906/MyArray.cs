@@ -89,21 +89,6 @@ public class MyArray
 
     }
 
-    public static void Sort<T> (T[] array) where T : IComparable<T>
-    {
-        for (int i = 0; i < array.Length - 1; ++i)
-        {
-            for (int j = 0; j < array.Length - 1 - i; ++j)
-            {
-                if (array[j].CompareTo(array[j + 1]) > 0)
-                {
-                    T temp = array[j];
-                    array[j] = array[j + 1];
-                    array[j + 1] = temp;
-                }
-            }
-        }
-    }
 
     public static int IndexOf<T> (T[] array, T value) where T : IEquatable<T>
     {
@@ -215,7 +200,63 @@ public class MyArray
         foreach(T item in array) action(item);
     }
 
-    public static void Sort(Array keys, Array? items, int index, int length, System.Collections.IComparer? comparer)
+    public static bool TrueForAll<T>(T[] array, Predicate<T> match)
+    {
+        foreach (T item in array) if (!match(item)) return false;
+        return true;
+    }
+
+    #region Sort
+    public static void Sort<T>(T[] array) where T : IComparable<T>
+    {
+        for (int i = 0; i < array.Length - 1; ++i)
+        {
+            for (int j = 0; j < array.Length - 1 - i; ++j)
+            {
+                if (array[j].CompareTo(array[j + 1]) > 0)
+                {
+                    T temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+                }
+            }
+        }
+    }
+    public static void Sort<T>(T[] array, System.Collections.Generic.IComparer<T>? comparer)
+    {
+        for(int i = 0; i < array.Length - 1; i++)
+        {
+            for(int j = 0; j < array.Length - 1 - i; ++j)
+            {
+                if (comparer.Compare(array[j], array[j + 1]) > 0)
+                {
+                    T temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+                }
+            }
+        }
+    }
+
+    public static void Sort<T>(T[] array, Comparison<T> comparison)
+    {
+        for (int i = 0; i < array.Length - 1; i++)
+        {
+            for (int j = 0; j < array.Length - 1 - i; ++j)
+            {
+                if (comparison(array[j], array[j + 1]) > 0)
+                {
+                    T temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+                }
+            }
+        }
+
+    }
+
+
+    public static void Sort<T> (Array keys, Array? items, int index, int length, System.Collections.IComparer? comparer)
     {
         // index와 length 매개변수를 사용하여 정렬 범위를 지정
         for (int i = index; i < index + length - 1; ++i)
@@ -248,12 +289,12 @@ public class MyArray
     }
 
 
-    public static void Sort(Array array, int index, int length, System.Collections.IComparer? comparer)
+    public static void Sort<T> (Array array, int index, int length, System.Collections.IComparer? comparer)
     {
-
+        
     }
 
-    public static void Sort(Array array, System.Collections.IComparer? comparer)
+    public static void Sort<T> (Array array, System.Collections.IComparer? comparer)
     {
 
     }
@@ -263,15 +304,6 @@ public class MyArray
 
     }
 
-    public static void Sort<T>(T[] array, System.Collections.Generic.IComparer<T>? comparer)
-    {
-
-    }
-
-    public static void Sort<T>(T[] array, Comparison<T> comparison)
-    {
-
-    }
 
     public static void Sort<T>(T[] array, int index, int length, System.Collections.Generic.IComparer<T>? comparer)
     {
@@ -287,6 +319,8 @@ public class MyArray
     {
 
     }
+    #endregion
+
     //public static int BinarySearch<T>(T[] array, T value)
     //{
     //    return BinarySearchRecursive(array, value, 0, array.Length - 1);
