@@ -5,7 +5,8 @@
         static void Main(string[] args)
         {
             //StackExample();
-            QueueExample();
+            //QueueExample();
+            ListExample();
         }
 
         public static void StackExample()
@@ -79,6 +80,20 @@
 
             Console.WriteLine($"큐의 크기 : {myQueue.Count()}");
 
+        }
+        public static void ListExample()
+        {
+            MyList<string> myList = new MyList<string>();
+            Console.WriteLine($"리스트의 크기 : {myList.Count()}");
+
+            myList.Add("ABC");
+            myList.Add("DEF");
+            Console.WriteLine(myList.Contains("DEF"));
+
+            //foreach(string item in myList) 
+            //    Console.WriteLine(item);
+
+            Console.WriteLine(myList);
         }
     }
 }
