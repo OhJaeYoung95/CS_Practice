@@ -15,6 +15,7 @@ public class MyQueue<T> : IEnumerable<T>
     {
         // 초기화 로직
         _items = new T[4];
+        _firstIndex = 0;
         _lastIndex = 0;
     }
 
