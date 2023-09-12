@@ -228,7 +228,7 @@ public class MyArray
         {
             for(int j = 0; j < array.Length - 1 - i; ++j)
             {
-                if (comparer.Compare(array[j], array[j + 1]) > 0)
+                if (comparer?.Compare(array[j], array[j + 1]) > 0)
                 {
                     T temp = array[j];
                     array[j] = array[j + 1];
@@ -315,7 +315,7 @@ public class MyArray
     {
         for (int i = index; i < index + length - 1; ++i)
         {
-            for (int j = index; j < index + length - i - 1; ++j)
+            for (int j = index; j < index + length - 1; ++j)
             {
                 int compareResult = comparer != null
                     ? comparer.Compare(keys[j], keys[j+1])
