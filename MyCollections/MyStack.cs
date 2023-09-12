@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections;
+using System.Text;
 
 public class MyStack<T> : IEnumerable<T>
 {
     private T[] _items;
-    int _count = 0;
+    private int _count = 0;
 
     public MyStack()
     {
@@ -37,6 +38,7 @@ public class MyStack<T> : IEnumerable<T>
         // 구현
         T popItem = Peek();
         _count--;
+
         return popItem;
     }
 
@@ -49,7 +51,7 @@ public class MyStack<T> : IEnumerable<T>
 
     public IEnumerator<T> GetEnumerator()
     {
-        for (int i = _count - 1; i >= 0; i--)
+        for (int i = _count - 1; i >= 0; --i)
         {
             yield return _items[i];
         }
@@ -59,4 +61,16 @@ public class MyStack<T> : IEnumerable<T>
     {
         return GetEnumerator();
     }
+
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("Stack Elements : ");
+        for (int i = _count - 1; i >= 0; --i)
+        {
+            sb.Append($"{_items[i]} ");
+        }
+        return sb.ToString();
+    }
+
 }
