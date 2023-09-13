@@ -1,24 +1,36 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Text;
 
 public class MyLinkedList<T> : IEnumerable<T>
 {
     public MyLinkedListNode<T> First { get; private set; }
     public MyLinkedListNode<T> Last { get; private set; }
 
+    private MyLinkedListNode<T>[] _nodes;
+
     public MyLinkedList(T[] values)
     {
-        MyLinkedListNode<T> first = new MyLinkedListNode<T>(values[0]);
-        First = first;
+        _nodes = new MyLinkedListNode<T>[values.Length];
 
-        MyLinkedListNode<T> nextNode = First.Next;
-
-
-        for (int i = 1; i < values.Length - 1; ++i)
+        for(int i = 0; i < values.Length; i++)
         {
-            nextNode = new MyLinkedListNode<T>(values[i]);
+            _nodes[i] = new MyLinkedListNode<T>(values[i]);
         }
 
+        First = _nodes[0];
+        First.Next = _nodes[1];
+        First.Previous = null;
+        Last = _nodes[values.Length - 1];
+        Last.Next = null;
+        Last.Previous = _nodes[values.Length - 2];
+
+        for (int i = 1; i < values.Length - 1; i++)
+        {
+            _nodes[i].Previous = _nodes[i - 1];
+            _nodes[i].Next = _nodes[i + 1];
+        }
     }
 
 
@@ -104,6 +116,19 @@ public class MyLinkedList<T> : IEnumerable<T>
     IEnumerator IEnumerable.GetEnumerator()
     {
         return GetEnumerator();
+    }
+
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("LinkedList Elements : \n");
+        int i = 1;
+        foreach (var node in _nodes)
+        {
+            sb.Append($"{i}st Node : \"{node.Value}\"\n");
+            i++;
+        }
+        return sb.ToString();
     }
 }
 

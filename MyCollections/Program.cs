@@ -214,9 +214,36 @@ namespace MyCollections
             // Create the link list.
             string[] words =
                 { "the", "fox", "jumps", "over", "the", "dog" };
+            //LinkedList<string> sentence = new LinkedList<string>(words);
             MyLinkedList<string> sentence = new MyLinkedList<string>(words);
             Display(sentence, "The linked list values:");
             Console.WriteLine($"sentence.Contains(\"jumps\") = {sentence.Contains("jumps")}");
+
+            // Add the word 'today' to the beginning of the linked list.
+            sentence.AddFirst("today");
+            Display(sentence, "Test 1: Add 'today' to beginning of the list:");
+
+            // Move the first node to be the last node.
+            MyLinkedListNode<string> mark1 = sentence.First;
+            sentence.RemoveFirst();
+            sentence.AddLast(mark1.Value);
+            Display(sentence, "Test 2: Move first node to be last node:");
+
+            // Change the last node to 'yesterday'.
+            sentence.RemoveLast();
+            sentence.AddLast("yesterday");
+            Display(sentence, "Test 3: Change the last node to 'yesterday':");
+
+            // Move the last node to be the first node.
+            mark1 = sentence.Last;
+            sentence.RemoveLast();
+            sentence.AddFirst(mark1.Value);
+            Display(sentence, "Test 4: Move last node to be first node:");
+
+            MyLinkedListNode<string> current = sentence.Find("fox");
+            Console.WriteLine($"Find \"fox\" : {current.Value} \n");
+
+            Console.WriteLine(sentence);
         }
         private static void Display(MyLinkedList<string> words, string test)
         {
