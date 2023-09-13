@@ -1,4 +1,6 @@
-﻿namespace MyCollections
+﻿using System.Text;
+
+namespace MyCollections
 {
     internal class Program
     {
@@ -6,7 +8,8 @@
         {
             //StackExample();
             //QueueExample();
-            ListExample();
+            //ListExample();
+            LinkedListExample();
         }
 
         public static void StackExample()
@@ -83,6 +86,7 @@
         }
         public static void ListExample()
         {
+            #region Contains & ReToString Example
             //MyList<string> myList = new MyList<string>();
             //Console.WriteLine($"리스트의 크기 : {myList.Count()}");
 
@@ -94,7 +98,8 @@
             //    Console.WriteLine(item);
 
             //Console.WriteLine(myList);
-
+            #endregion
+            #region CopyTo Example
             // MyList<string> dinosaurs = new MyList<string>();
 
             // dinosaurs.Add("Tyrannosaurus");
@@ -114,58 +119,114 @@
             // {
             //     Console.WriteLine(dinosaur);
             // }
+            #endregion
+            #region Insert & Remove & ReMoveAt Example
+            //MyList<Part> parts = new MyList<Part>();
 
-            // Create a list of parts.
-            List<Part> parts = new List<Part>();
+            //// Add parts to the list.
+            //parts.Add(new Part() { PartName = "crank arm", PartId = 1234 });
+            //parts.Add(new Part() { PartName = "chain ring", PartId = 1334 });
+            //parts.Add(new Part() { PartName = "regular seat", PartId = 1434 });
+            //parts.Add(new Part() { PartName = "banana seat", PartId = 1444 });
+            //parts.Add(new Part() { PartName = "cassette", PartId = 1534 });
+            //parts.Add(new Part() { PartName = "shift lever", PartId = 1634 });
 
-            // Add parts to the list.
-            parts.Add(new Part() { PartName = "crank arm", PartId = 1234 });
-            parts.Add(new Part() { PartName = "chain ring", PartId = 1334 });
-            parts.Add(new Part() { PartName = "regular seat", PartId = 1434 });
-            parts.Add(new Part() { PartName = "banana seat", PartId = 1444 });
-            parts.Add(new Part() { PartName = "cassette", PartId = 1534 });
-            parts.Add(new Part() { PartName = "shift lever", PartId = 1634 });
+            //foreach (Part aPart in parts)
+            //{
+            //    Console.WriteLine(aPart);
+            //}
+            //Console.WriteLine("\nContains(\"1734\"): {0}", parts.Contains(new Part { PartId = 1734, PartName = "" }));
 
-            Console.WriteLine();
-            foreach (Part aPart in parts)
-            {
-                Console.WriteLine(aPart);
-            }
+            //// Insert a new item at position 2.
+            //Console.WriteLine("\nInsert(2, \"1834\")");
+            //parts.Insert(2, new Part() { PartName = "brake lever", PartId = 1834 });
 
-            Console.WriteLine("\nContains(\"1734\"): {0}", parts.Contains(new Part { PartId = 1734, PartName = "" }));
+            ////Console.WriteLine();
+            //foreach (Part aPart in parts)
+            //{
+            //    Console.WriteLine(aPart);
+            //}
 
-            // Insert a new item at position 2.
-            Console.WriteLine("\nInsert(2, \"1834\")");
-            parts.Insert(2, new Part() { PartName = "brake lever", PartId = 1834 });
+            //Console.WriteLine("\nParts[3]: {0}", parts[3]);
+
+            //Console.WriteLine("\nRemove(\"1534\")");
+
+            //// This will remove part 1534 even though the PartName is different,
+            //// because the Equals method only checks PartId for equality.
+            //parts.Remove(new Part() { PartId = 1534, PartName = "cogs" });
 
             //Console.WriteLine();
-            foreach (Part aPart in parts)
+            //foreach (Part aPart in parts)
+            //{
+            //    Console.WriteLine(aPart);
+            //}
+            //Console.WriteLine("\nRemoveAt(3)");
+            //// This will remove the part at index 3.
+            //parts.RemoveAt(3);
+
+            //Console.WriteLine();
+            //foreach (Part aPart in parts)
+            //{
+            //    Console.WriteLine(aPart);
+            //}
+            #endregion
+            #region IndexOf Example
+            //MyList<string> dinosaurs = new MyList<string>();
+
+            //dinosaurs.Add("Tyrannosaurus");
+            //dinosaurs.Add("Amargasaurus");
+            //dinosaurs.Add("Mamenchisaurus");
+            //dinosaurs.Add("Brachiosaurus");
+            //dinosaurs.Add("Deinonychus");
+            //dinosaurs.Add("Tyrannosaurus");
+            //dinosaurs.Add("Compsognathus");
+
+            //Console.WriteLine(dinosaurs);
+
+            //Console.WriteLine("\nIndexOf(\"Tyrannosaurus\"): {0}",
+            //    dinosaurs.IndexOf("Tyrannosaurus"));
+
+            //Console.WriteLine("\nIndexOf(\"Tyrannosaurus\", 3): {0}",
+            //    dinosaurs.IndexOf("Tyrannosaurus", 3));
+
+            //Console.WriteLine("\nIndexOf(\"Tyrannosaurus\", 2, 2): {0}",
+            //    dinosaurs.IndexOf("Tyrannosaurus", 2, 2));
+            #endregion
+            #region RemoveAll Example
+            //MyList<string> dinosaurs = new MyList<string>();
+
+            //dinosaurs.Add("Compsognathus");
+            //dinosaurs.Add("Amargasaurus");
+            //dinosaurs.Add("Oviraptor");
+            //dinosaurs.Add("Velociraptor");
+            //dinosaurs.Add("Deinonychus");
+            //dinosaurs.Add("Dilophosaurus");
+            //dinosaurs.Add("Gallimimus");
+            //dinosaurs.Add("Triceratops");
+
+            //Console.WriteLine(dinosaurs);
+            //Console.WriteLine($"{dinosaurs.RemoveAll(s => s.ToLower().EndsWith("saurus"))} elements removed by RemoveAll(EndsWithSaurus).\n");
+            //Console.WriteLine(dinosaurs);
+            #endregion
+        }
+        public static void LinkedListExample()
+        {
+            // Create the link list.
+            string[] words =
+                { "the", "fox", "jumps", "over", "the", "dog" };
+            MyLinkedList<string> sentence = new MyLinkedList<string>(words);
+            Display(sentence, "The linked list values:");
+            Console.WriteLine($"sentence.Contains(\"jumps\") = {sentence.Contains("jumps")}");
+        }
+        private static void Display(MyLinkedList<string> words, string test)
+        {
+            Console.WriteLine(test);
+            foreach (string word in words)
             {
-                Console.WriteLine(aPart);
+                Console.Write(word + " ");
             }
-
-            Console.WriteLine("\nParts[3]: {0}", parts[3]);
-
-            Console.WriteLine("\nRemove(\"1534\")");
-
-            // This will remove part 1534 even though the PartName is different,
-            // because the Equals method only checks PartId for equality.
-            parts.Remove(new Part() { PartId = 1534, PartName = "cogs" });
-
             Console.WriteLine();
-            foreach (Part aPart in parts)
-            {
-                Console.WriteLine(aPart);
-            }
-            Console.WriteLine("\nRemoveAt(3)");
-            // This will remove the part at index 3.
-            parts.RemoveAt(3);
-
             Console.WriteLine();
-            foreach (Part aPart in parts)
-            {
-                Console.WriteLine(aPart);
-            }
         }
     }
 
@@ -177,7 +238,7 @@
 
         public override string ToString()
         {
-            return "ID: " + PartId + "   Name: " + PartName;
+            return $"ID: {PartId} Name: {PartName}";
         }
         public override bool Equals(object obj)
         {

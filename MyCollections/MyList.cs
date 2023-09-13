@@ -22,7 +22,7 @@ public class MyList<T> : IList<T>
         get
         {
             // 구현
-            return _items.Length;
+            return _count;
         }
     }
 
@@ -118,22 +118,31 @@ public class MyList<T> : IList<T>
 
     public int IndexOf(T item)
     {
-        for(int i = 0; i < _count; ++i)
-        {
-            if (Equals(item, _items[i]))
-                return i;
-        }
-        return -1;
+        //for(int i = 0; i < _count; ++i)
+        //{
+        //    if (Equals(item, _items[i]))
+        //        return i;
+        //}
+        //return -1;
+        return IndexOf(item, 0, _count);
     }
 
     public int IndexOf(T item, int index)
     {
-
-        return -1;
+        return IndexOf(item, index, _count - index);
     }
 
     public int IndexOf(T item, int index, int count)
     {
+        for (int i = index; i < index + count; ++i)
+        {
+            if (i > _count)
+                return -1;
+
+            if (Equals(item, _items[i]))
+                return i;
+        }
+
         return -1;
     }
     public void Insert(int index, T item)
@@ -147,6 +156,7 @@ public class MyList<T> : IList<T>
         {
             _items[i] = _items[i - 1];
         }
+        _count++;
         _items[index] = item;
     }
     public void RemoveAt(int index)
@@ -155,8 +165,23 @@ public class MyList<T> : IList<T>
         {
             _items[i] = _items[i + 1];
         }
+        _count--;
     }
 
+    public int RemoveAll(Predicate<T> match)
+    {
+        int findCount = 0;
+        for (int i = 0; i < _count; i++)
+        {
+            if (match(_items[i]))
+            {
+                Remove(_items[i]);
+                findCount++;
+            }
+        }
+  
+        return findCount;
+    }
     public IEnumerator<T> GetEnumerator()
     {
         for(int i = 0; i < _count; ++i)
@@ -173,12 +198,12 @@ public class MyList<T> : IList<T>
     public override string ToString()
     {
         StringBuilder sb = new StringBuilder();
-        sb.Append("List Elements : ");
-
-        for(int i =0; i<_count; ++i)
+        sb.Append("List Elements : ----------------\n");
+        for (int i = 0; i < _count; ++i)
         {
-            sb.Append($"\"{_items[i]}\" ");
+            sb.Append($"\"{_items[i]}\"\n");
         }
+        sb.Append("--------------------------------\n");
 
         return sb.ToString();
     }
