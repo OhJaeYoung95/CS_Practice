@@ -83,26 +83,78 @@ public class MyList<T> : IList<T>
         return false;
     }
 
+    public void CopyTo(T[] array)
+    {
+        for (int i = 0; i < _items.Length; i++)
+        {
+            array[i] = _items[i];
+        }
+    }
     public void CopyTo(T[] array, int arrayIndex)
     {
-
+        for (int i = arrayIndex; i < arrayIndex+_items.Length; i++)
+        {
+            array[i] = _items[i - arrayIndex];
+        }
+    }
+    public void CopyTo(int index, T[] array, int arrayIndex, int count)
+    {
+        for(int i = index; i < index + count; ++i)
+        {
+            array[arrayIndex + (i - index)] = _items[i];
+        }
     }
     public bool Remove(T item)
     {
+        if(item == null) 
+            return false;
+        int index = IndexOf(item);
+        if (index == -1)
+            return false;
+
+        RemoveAt(index);
         return true;
     }
 
     public int IndexOf(T item)
     {
-        return 0;
+        for(int i = 0; i < _count; ++i)
+        {
+            if (Equals(item, _items[i]))
+                return i;
+        }
+        return -1;
+    }
+
+    public int IndexOf(T item, int index)
+    {
+
+        return -1;
+    }
+
+    public int IndexOf(T item, int index, int count)
+    {
+        return -1;
     }
     public void Insert(int index, T item)
     {
+        if(index + _count > _items.Length / 2)
+        {
+            Array.Resize(ref _items, _items.Length * 2);
+        }
 
+        for (int i = _count; i >= index; --i)
+        {
+            _items[i] = _items[i - 1];
+        }
+        _items[index] = item;
     }
     public void RemoveAt(int index)
     {
-
+        for(int i = index; i < _count - 1; ++i)
+        {
+            _items[i] = _items[i + 1];
+        }
     }
 
     public IEnumerator<T> GetEnumerator()

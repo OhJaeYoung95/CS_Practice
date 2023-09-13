@@ -83,17 +83,118 @@
         }
         public static void ListExample()
         {
-            MyList<string> myList = new MyList<string>();
-            Console.WriteLine($"리스트의 크기 : {myList.Count()}");
+            //MyList<string> myList = new MyList<string>();
+            //Console.WriteLine($"리스트의 크기 : {myList.Count()}");
 
-            myList.Add("ABC");
-            myList.Add("DEF");
-            Console.WriteLine(myList.Contains("DEF"));
+            //myList.Add("ABC");
+            //myList.Add("DEF");
+            //Console.WriteLine(myList.Contains("DEF"));
 
             //foreach(string item in myList) 
             //    Console.WriteLine(item);
 
-            Console.WriteLine(myList);
+            //Console.WriteLine(myList);
+
+            // MyList<string> dinosaurs = new MyList<string>();
+
+            // dinosaurs.Add("Tyrannosaurus");
+            // dinosaurs.Add("Amargasaurus");
+            // dinosaurs.Add("Mamenchisaurus");
+            // dinosaurs.Add("Brachiosaurus");
+            // dinosaurs.Add("Compsognathus");
+
+            // string[] array = new string[15];
+
+            // dinosaurs.CopyTo(array);
+            // dinosaurs.CopyTo(array, 6);
+            // dinosaurs.CopyTo(2, array, 12, 3);
+
+            //// Console.WriteLine(array);
+            // foreach (string dinosaur in array)
+            // {
+            //     Console.WriteLine(dinosaur);
+            // }
+
+            // Create a list of parts.
+            List<Part> parts = new List<Part>();
+
+            // Add parts to the list.
+            parts.Add(new Part() { PartName = "crank arm", PartId = 1234 });
+            parts.Add(new Part() { PartName = "chain ring", PartId = 1334 });
+            parts.Add(new Part() { PartName = "regular seat", PartId = 1434 });
+            parts.Add(new Part() { PartName = "banana seat", PartId = 1444 });
+            parts.Add(new Part() { PartName = "cassette", PartId = 1534 });
+            parts.Add(new Part() { PartName = "shift lever", PartId = 1634 });
+
+            Console.WriteLine();
+            foreach (Part aPart in parts)
+            {
+                Console.WriteLine(aPart);
+            }
+
+            Console.WriteLine("\nContains(\"1734\"): {0}", parts.Contains(new Part { PartId = 1734, PartName = "" }));
+
+            // Insert a new item at position 2.
+            Console.WriteLine("\nInsert(2, \"1834\")");
+            parts.Insert(2, new Part() { PartName = "brake lever", PartId = 1834 });
+
+            //Console.WriteLine();
+            foreach (Part aPart in parts)
+            {
+                Console.WriteLine(aPart);
+            }
+
+            Console.WriteLine("\nParts[3]: {0}", parts[3]);
+
+            Console.WriteLine("\nRemove(\"1534\")");
+
+            // This will remove part 1534 even though the PartName is different,
+            // because the Equals method only checks PartId for equality.
+            parts.Remove(new Part() { PartId = 1534, PartName = "cogs" });
+
+            Console.WriteLine();
+            foreach (Part aPart in parts)
+            {
+                Console.WriteLine(aPart);
+            }
+            Console.WriteLine("\nRemoveAt(3)");
+            // This will remove the part at index 3.
+            parts.RemoveAt(3);
+
+            Console.WriteLine();
+            foreach (Part aPart in parts)
+            {
+                Console.WriteLine(aPart);
+            }
         }
+    }
+
+    public class Part : IEquatable<Part>
+    {
+        public string PartName { get; set; }
+
+        public int PartId { get; set; }
+
+        public override string ToString()
+        {
+            return "ID: " + PartId + "   Name: " + PartName;
+        }
+        public override bool Equals(object obj)
+        {
+            if (obj == null) return false;
+            Part objAsPart = obj as Part;
+            if (objAsPart == null) return false;
+            else return Equals(objAsPart);
+        }
+        public override int GetHashCode()
+        {
+            return PartId;
+        }
+        public bool Equals(Part other)
+        {
+            if (other == null) return false;
+            return (this.PartId.Equals(other.PartId));
+        }
+        // Should also override == and != operators.
     }
 }
