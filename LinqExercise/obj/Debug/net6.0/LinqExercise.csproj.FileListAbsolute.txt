@@ -1,0 +1,14 @@
+C:\C#\LinqExercise\obj\Debug\net6.0\LinqExercise.GeneratedMSBuildEditorConfig.editorconfig
+C:\C#\LinqExercise\obj\Debug\net6.0\LinqExercise.AssemblyInfoInputs.cache
+C:\C#\LinqExercise\obj\Debug\net6.0\LinqExercise.AssemblyInfo.cs
+C:\C#\LinqExercise\obj\Debug\net6.0\LinqExercise.csproj.CoreCompileInputs.cache
+C:\C#\LinqExercise\bin\Debug\net6.0\LinqExercise.exe
+C:\C#\LinqExercise\bin\Debug\net6.0\LinqExercise.deps.json
+C:\C#\LinqExercise\bin\Debug\net6.0\LinqExercise.runtimeconfig.json
+C:\C#\LinqExercise\bin\Debug\net6.0\LinqExercise.dll
+C:\C#\LinqExercise\bin\Debug\net6.0\LinqExercise.pdb
+C:\C#\LinqExercise\obj\Debug\net6.0\LinqExercise.dll
+C:\C#\LinqExercise\obj\Debug\net6.0\refint\LinqExercise.dll
+C:\C#\LinqExercise\obj\Debug\net6.0\LinqExercise.pdb
+C:\C#\LinqExercise\obj\Debug\net6.0\LinqExercise.genruntimeconfig.cache
+C:\C#\LinqExercise\obj\Debug\net6.0\ref\LinqExercise.dll

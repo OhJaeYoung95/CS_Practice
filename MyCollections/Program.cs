@@ -241,7 +241,7 @@ namespace MyCollections
             Display(sentence, "Test 4: Move last node to be first node:");
 
             MyLinkedListNode<string> current = sentence.Find("fox");
-            Console.WriteLine($"Find \"fox\" : {current.Value} \n");
+            Console.WriteLine($"Find The Value(\"fox\") Of the Node / Node: {current.Value} \n");
 
             Console.WriteLine(sentence);
         }
