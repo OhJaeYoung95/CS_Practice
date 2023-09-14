@@ -33,7 +33,19 @@ public class MyLinkedList<T> : IEnumerable<T>
         }
     }
 
+    public void Clear()
+    {
+        MyLinkedListNode<T> nextNode = First.Next;
+        First = null;
+        while (nextNode != null)
+        {
+            MyLinkedListNode<T> clearNode = nextNode;
+            nextNode = null;
+            nextNode = clearNode.Next;
+            clearNode = null;
+        }
 
+    }
 
     public void AddFirst(T value)
     {
@@ -53,9 +65,122 @@ public class MyLinkedList<T> : IEnumerable<T>
         node.Previous = Last;
         node.Next = null;
         Last = node;
+    }
+
+    public MyLinkedListNode<T> AddAfter(MyLinkedListNode<T> node, T value)
+    {
+        if (node == null)
+        {
+            Console.WriteLine($"Not Founded Node({node})!");
+            return null;
+        }
+
+        MyLinkedListNode<T> insertNode = new MyLinkedListNode<T>(value);
+        AddAfter(node, insertNode);
+
+        return insertNode;
+    }
+
+    public void AddAfter(MyLinkedListNode<T> node, MyLinkedListNode<T> newNode)
+    {
+        if(node == null)
+        {
+            Console.WriteLine($"Not Founded Node({node})!");
+            return;
+        }
+
+        if(node == Last)
+        {
+            newNode.Next = null;
+            node.Next = newNode;
+            newNode.Previous = node;
+        }
+        else
+        {
+            newNode.Next = node.Next;
+            node.Next.Previous = newNode;
+            newNode.Previous = node;
+            node.Next = newNode;
+        }
 
     }
 
+    public MyLinkedListNode<T> AddBefore(MyLinkedListNode<T> node, T value)
+    {
+        if (node == null)
+        {
+            Console.WriteLine($"Not Founded Node({node})!");
+            return null;
+        }
+
+        MyLinkedListNode<T> insertNode = new MyLinkedListNode<T>(value);
+        AddBefore(node, insertNode);
+
+        return insertNode;
+    }
+
+    public void AddBefore(MyLinkedListNode<T> node, MyLinkedListNode<T> newNode)
+    {
+        if (node == null)
+        {
+            Console.WriteLine($"Not Founded Node({node})!");
+            return;
+        }
+
+        if (node == First)
+        {
+            node.Previous = newNode;
+            newNode.Previous = null;
+            newNode.Next = node;
+        }
+        else
+        {
+            newNode.Previous = node.Previous;
+            node.Previous.Next = newNode;
+            newNode.Next = node;
+            node.Previous = newNode;
+        }
+    }
+    public bool Remove(T value)
+    {
+        MyLinkedListNode<T> findNode = Find(value);
+        if (findNode == null)
+            return false;
+        Remove(findNode);
+        return true;
+    }
+    public void Remove(MyLinkedListNode<T> node)
+    {
+        if(node == null)
+        {
+            throw new ArgumentNullException(nameof(node), "The 'node' parameter cannot be null.");
+        }
+        else if(Find(node.Value) == null)
+        {
+            throw new InvalidOperationException("The 'node' Not found  so, InvalidOperationException occurred.");
+        }
+        else
+        {
+            if(node == First)
+            {
+                First = node.Next;
+                First.Previous = null;
+                node = null;
+            }
+            else if(node == Last)
+            {
+                Last = node.Previous;
+                Last.Next = null;
+                node = null;
+            }
+            else
+            {
+                node.Previous.Next = node.Next;
+                node.Next.Previous = node.Previous;
+                node = null;
+            }
+        }
+    }
     public void RemoveFirst()
     {
         // 구현
@@ -92,11 +217,32 @@ public class MyLinkedList<T> : IEnumerable<T>
                 nextNode = nextNode.Next;
                 if (nextNode == Last.Next)
                 {
-                    Console.WriteLine("Not Foundee!");
+                    Console.WriteLine("Not Found!");
                     return null;
                 }
             }
             return nextNode;
+        }
+    }
+    public MyLinkedListNode<T>? FindLast(T value)
+    {
+        if (Equals(Last.Value, value))
+        {
+            return Last;
+        }
+        else
+        {
+            MyLinkedListNode<T> previousNode = Last.Previous;
+            while (!Equals(previousNode.Value, value))
+            {
+                previousNode = previousNode.Previous;
+                if (previousNode == First.Previous)
+                {
+                    Console.WriteLine("Not Found!");
+                    return null;
+                }
+            }
+            return previousNode;
         }
     }
 
@@ -121,13 +267,23 @@ public class MyLinkedList<T> : IEnumerable<T>
     public override string ToString()
     {
         StringBuilder sb = new StringBuilder();
-        sb.Append("LinkedList Elements : \n");
-        int i = 1;
-        foreach (var node in _nodes)
+        sb.Append("LinkedList Elements : ----------------\n");
+        int i = 0;
+        if(First == null)
         {
-            sb.Append($"{i}st Node : \"{node.Value}\"\n");
-            i++;
+            sb.Append("LinkedList is Empty!\n");
+            sb.Append("--------------------------------------\n");
+            return sb.ToString();
         }
+        sb.Append($"{i}st Node : \"{First.Value}\"\n");
+        MyLinkedListNode<T> nextNode = First.Next;
+        while (nextNode != null)
+        {
+            sb.Append($"{i++}st Node : \"{nextNode.Value}\"\n");
+            nextNode = nextNode.Next;
+        }
+
+        sb.Append("--------------------------------------\n");
         return sb.ToString();
     }
 }

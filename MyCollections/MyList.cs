@@ -60,7 +60,7 @@ public class MyList<T> : IList<T>
         // 둘다 안댐
 
         // 방법 1
-        _items.ToList().Clear();
+        //_items.ToList().Clear();
 
         // 방법 2
         for (int i = 0; i < _count; i++)

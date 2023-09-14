@@ -214,37 +214,74 @@ namespace MyCollections
             // Create the link list.
             string[] words =
                 { "the", "fox", "jumps", "over", "the", "dog" };
-            //LinkedList<string> sentence = new LinkedList<string>(words);
             MyLinkedList<string> sentence = new MyLinkedList<string>(words);
             Display(sentence, "The linked list values:");
             Console.WriteLine($"sentence.Contains(\"jumps\") = {sentence.Contains("jumps")}");
 
             // Add the word 'today' to the beginning of the linked list.
             sentence.AddFirst("today");
-            Display(sentence, "Test 1: Add 'today' to beginning of the list:");
+            //Display(sentence, "Test 1: Add 'today' to beginning of the list:");
 
             // Move the first node to be the last node.
             MyLinkedListNode<string> mark1 = sentence.First;
             sentence.RemoveFirst();
             sentence.AddLast(mark1.Value);
-            Display(sentence, "Test 2: Move first node to be last node:");
+            //Display(sentence, "Test 2: Move first node to be last node:");
 
             // Change the last node to 'yesterday'.
             sentence.RemoveLast();
             sentence.AddLast("yesterday");
-            Display(sentence, "Test 3: Change the last node to 'yesterday':");
+            //Display(sentence, "Test 3: Change the last node to 'yesterday':");
 
             // Move the last node to be the first node.
             mark1 = sentence.Last;
             sentence.RemoveLast();
             sentence.AddFirst(mark1.Value);
-            Display(sentence, "Test 4: Move last node to be first node:");
+            //Display(sentence, "Test 4: Move last node to be first node:");
 
             MyLinkedListNode<string> current = sentence.Find("fox");
-            Console.WriteLine($"Find The Value(\"fox\") Of the Node / Node: {current.Value} \n");
+            //Console.WriteLine($"Find The Value(\"fox\") Of the Node / Node: {current.Value} \n");
 
-            Console.WriteLine(sentence);
+            //Console.WriteLine(sentence);
+
+            sentence.RemoveFirst();
+            current = sentence.FindLast("the");
+            //IndicateNode(current, "Test 5: Indicate last occurence of 'the':");
+
+            sentence.AddAfter(current, "old");
+            sentence.AddAfter(current, "lazy");
+            //IndicateNode(current, "Test 6: Add 'lazy' and 'old' after 'the':");
+            
+            current = sentence.Find("fox");
+            //IndicateNode(current, "Test 7: Indicate the 'fox' node:");
+
+            sentence.AddBefore(current, "quick");
+            sentence.AddBefore(current, "brown");
+            //IndicateNode(current, "Test 8: Add 'quick' and 'brown' before 'fox':");
+
+            mark1 = current;
+            MyLinkedListNode<string> mark2 = current.Previous;
+            current = sentence.Find("dog");
+            //IndicateNode(current, "Test 9: Indicate the 'dog' node:");
+
+            sentence.Remove(mark1);
+            sentence.AddBefore(current, mark1);
+            //IndicateNode(current, "Test 11: Move a referenced node (fox) before the current node (dog):");
+
+            //Console.WriteLine($"Remove the node based on node information : {current.Value}");
+            sentence.Remove(current);
+            //Console.WriteLine();
+            //Console.WriteLine(sentence);
+
+            //Console.WriteLine($"Remove the node based on the node value : over");
+            sentence.Remove("over");
+            //Console.WriteLine();
+            //Console.WriteLine(sentence);
+
+            sentence.Clear();
+            //Console.WriteLine(sentence);
         }
+
         private static void Display(MyLinkedList<string> words, string test)
         {
             Console.WriteLine(test);
@@ -253,6 +290,35 @@ namespace MyCollections
                 Console.Write(word + " ");
             }
             Console.WriteLine();
+            Console.WriteLine();
+        }
+        private static void IndicateNode(MyLinkedListNode<string> node, string test)
+        {
+            Console.WriteLine(test);
+            if (node == null)
+            {
+                Console.WriteLine("Node '{0}' is not in the list.\n",
+                    node.Value);
+                return;
+            }
+
+            StringBuilder result = new StringBuilder("(" + node.Value + ")");
+            MyLinkedListNode<string> nodeP = node.Previous;
+
+            while (nodeP != null)
+            {
+                result.Insert(0, nodeP.Value + " ");
+                nodeP = nodeP.Previous;
+            }
+
+            node = node.Next;
+            while (node != null)
+            {
+                result.Append(" " + node.Value);
+                node = node.Next;
+            }
+
+            Console.WriteLine(result);
             Console.WriteLine();
         }
     }
