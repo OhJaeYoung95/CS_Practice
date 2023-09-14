@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Linq;
+using System.Text;
 
 namespace MyCollections
 {
@@ -277,6 +278,13 @@ namespace MyCollections
             sentence.Remove("over");
             //Console.WriteLine();
             //Console.WriteLine(sentence);
+
+            string[] sArray = new string[sentence.Count()];
+            sentence.CopyTo(sArray, 0);
+            //foreach (var item in sArray)
+            //{
+            //    Console.WriteLine(item);
+            //}
 
             sentence.Clear();
             //Console.WriteLine(sentence);

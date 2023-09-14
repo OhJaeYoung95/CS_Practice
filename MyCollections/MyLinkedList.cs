@@ -245,7 +245,19 @@ public class MyLinkedList<T> : IEnumerable<T>
             return previousNode;
         }
     }
+    public void CopyTo(T[] array, int index)
+    {
+        int nodeIndex = 0;
+        array[nodeIndex] = First.Value;
+        MyLinkedListNode<T> nextNode = First.Next;
+        while (nextNode != null)
+        {
+            nodeIndex++;
+            array[nodeIndex] = nextNode.Value;
+            nextNode = nextNode.Next;
+        }
 
+    }
     public IEnumerator<T> GetEnumerator()
     {
         
