@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security;
 using System.Text;
 
 public class MyLinkedList<T> : IEnumerable<T>
@@ -12,24 +13,37 @@ public class MyLinkedList<T> : IEnumerable<T>
 
     public MyLinkedList(T[] values)
     {
-        _nodes = new MyLinkedListNode<T>[values.Length];
+        //_nodes = new MyLinkedListNode<T>[values.Length];
 
-        for(int i = 0; i < values.Length; i++)
-        {
-            _nodes[i] = new MyLinkedListNode<T>(values[i]);
-        }
+        //for(int i = 0; i < values.Length; i++)
+        //{
+        //    _nodes[i] = new MyLinkedListNode<T>(values[i]);
+        //}
 
-        First = _nodes[0];
-        First.Next = _nodes[1];
+        //First = _nodes[0];
+        //First.Next = _nodes[1];
+        //First.Previous = null;
+        //Last = _nodes[values.Length - 1];
+        //Last.Next = null;
+        //Last.Previous = _nodes[values.Length - 2];
+
+        //for (int i = 1; i < values.Length - 1; i++)
+        //{
+        //    _nodes[i].Previous = _nodes[i - 1];
+        //    _nodes[i].Next = _nodes[i + 1];
+        //}
+
+        First = new MyLinkedListNode<T>(values[0]);
+        Last = new MyLinkedListNode<T>(values[1]);
+
         First.Previous = null;
-        Last = _nodes[values.Length - 1];
+        First.Next = Last;
+        Last.Previous = First;
         Last.Next = null;
-        Last.Previous = _nodes[values.Length - 2];
 
-        for (int i = 1; i < values.Length - 1; i++)
+        for(int i = 2; i < values.Length; i++)
         {
-            _nodes[i].Previous = _nodes[i - 1];
-            _nodes[i].Next = _nodes[i + 1];
+            AddLast(values[i]);
         }
     }
 
@@ -94,6 +108,7 @@ public class MyLinkedList<T> : IEnumerable<T>
             newNode.Next = null;
             node.Next = newNode;
             newNode.Previous = node;
+            Last = newNode;
         }
         else
         {
@@ -132,6 +147,7 @@ public class MyLinkedList<T> : IEnumerable<T>
             node.Previous = newNode;
             newNode.Previous = null;
             newNode.Next = node;
+            First = newNode;
         }
         else
         {

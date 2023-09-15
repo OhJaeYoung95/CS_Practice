@@ -10,6 +10,7 @@ public class MyQueue<T> : IEnumerable<T>
     private T[] _items;
     private int _firstIndex = 0;
     private int _lastIndex = 0;
+    private int _count = 0;
 
     public MyQueue()
     {

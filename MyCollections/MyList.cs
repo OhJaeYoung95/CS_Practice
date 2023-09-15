@@ -56,16 +56,13 @@ public class MyList<T> : IList<T>
     public void Clear()
     {
         // 구현
-
-        // 둘다 안댐
-
         // 방법 1
         //_items.ToList().Clear();
 
         // 방법 2
         for (int i = 0; i < _count; i++)
         {
-            _items[i] = default(T);
+            _items[i] = default;
         }
 
         _count = 0;
@@ -80,7 +77,9 @@ public class MyList<T> : IList<T>
                 if (checkItem.Equals(item))
                     return true;
         }
+
         return false;
+
     }
 
     public void CopyTo(T[] array)
