@@ -19,24 +19,65 @@ public class MyQueue<T> : IEnumerable<T>
         _firstIndex = 0;
         _lastIndex = 0;
     }
-
+    public int ItemsLength
+    {
+        get { return _items.Length; }
+    }
     public int Count
     {
         get
         {
             // 구현
-            return _items.Length;
+            return _count;
         }
     }
 
     public void Enqueue(T item)
     {
         // 구현
-        if(_lastIndex > _items.Length / 2)
+
+        if (_lastIndex == _items.Length && _firstIndex != 0)
+        {
+            Array.Resize(ref _items, _items.Length * 2);
+            _lastIndex = 0;
+        }
+        else if(_lastIndex == _items.Length && _firstIndex == 0)
         {
             Array.Resize(ref _items, _items.Length * 2);
         }
+        else if(_lastIndex == _firstIndex && _lastIndex != 0)
+        {
+            T[] firstArray = new T[_items.Length - _firstIndex + 1];
+            T[] lastArray = new T[_lastIndex];
+ 
+            for (int i = 0; i < _items.Length - _firstIndex; i++)
+            {
+                firstArray[i] = _items[i + _firstIndex];
+            }
+
+            for (int i = 0; i < _lastIndex; i++)
+            {
+                lastArray[i] = _items[i];
+            }
+
+            Array.Resize(ref _items, _items.Length * 2);
+
+            for (int i = 0; i < firstArray.Length; i++)
+            {
+                _items[i] = firstArray[i];
+            }
+
+            for (int i = firstArray.Length; i < firstArray.Length + lastArray.Length; i++)
+            {
+                _items[i] = lastArray[i - firstArray.Length];
+            }
+            _firstIndex = 0;
+            _lastIndex = firstArray.Length + lastArray.Length - 2;
+        }
+
         _items[_lastIndex++] = item;
+        _count++;
+
     }
 
     public T Dequeue()
@@ -44,6 +85,7 @@ public class MyQueue<T> : IEnumerable<T>
         // 구현
         T dequeueItem = Peek();
         _firstIndex++;
+        _count--;
         return dequeueItem;
     }
 
@@ -55,10 +97,26 @@ public class MyQueue<T> : IEnumerable<T>
 
     public IEnumerator<T> GetEnumerator()
     {
-        for (int i = _firstIndex; i < _lastIndex; ++i)
+        if (_firstIndex < _lastIndex)
         {
-            yield return _items[i];
+            for (int i = 0; i < _lastIndex; ++i)
+            {
+                yield return _items[i];
+            }
         }
+        else
+        {
+            for (int i = _firstIndex; i < _items.Length; ++i)
+            {
+                yield return _items[i];
+            }
+
+            for (int i = 0; i < _lastIndex; ++i)
+            {
+                yield return _items[i];
+            }
+        }
+
     }
 
     IEnumerator IEnumerable.GetEnumerator()
@@ -68,11 +126,30 @@ public class MyQueue<T> : IEnumerable<T>
 
     public override string ToString()
     {
+        //if (_lastIndex == _items.Length && _firstIndex != 0)
+        //else if (_lastIndex == _items.Length && _firstIndex == 0)
+        //else if (_lastIndex == _firstIndex && _lastIndex != 0)
         StringBuilder sb = new StringBuilder();
         sb.Append("Queue Elements : ");
-        for(int i = _firstIndex; i < _lastIndex; ++i)
+
+        if(_firstIndex < _lastIndex)
         {
-            sb.Append($"{_items[i]} ");
+            for (int i = _firstIndex - 1; i < _lastIndex; ++i)
+            {
+                sb.Append($"{_items[i]} ");
+            }
+        }
+        else
+        {
+            for (int i = _firstIndex ; i < _items.Length - _firstIndex; ++i)
+            {
+                sb.Append($"{_items[i]} ");
+            }
+
+            for(int i = 0; i < _lastIndex; ++i)
+            {
+                sb.Append($"{_items[i]} ");
+            }
         }
         return sb.ToString();
     }

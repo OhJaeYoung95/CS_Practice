@@ -8,9 +8,9 @@ namespace MyCollections
         static void Main(string[] args)
         {
             //StackExample();
-            //QueueExample();
+            QueueExample();
             //ListExample();
-            LinkedListExample();
+            //LinkedListExample();
         }
 
         public static void StackExample()
@@ -63,24 +63,29 @@ namespace MyCollections
             myQueue.Enqueue(1);
             myQueue.Enqueue(2);
             myQueue.Enqueue(3);
-            myQueue.Enqueue(4);
-            myQueue.Enqueue(5);
-            myQueue.Enqueue(6);
-            myQueue.Enqueue(7);
-            myQueue.Enqueue(8);
-            myQueue.Enqueue(9);
-            myQueue.Enqueue(10);
-
-            int topElement = myQueue.Peek();
-            Console.WriteLine($"Peek : {topElement}");
 
             int removedElement1 = myQueue.Dequeue();
             Console.WriteLine($"Dequeue : {removedElement1}");
 
-            int removedElement2 = myQueue.Dequeue();
-            Console.WriteLine($"Dequeue : {removedElement2}");
+            myQueue.Enqueue(4);
+            myQueue.Enqueue(6);
+
+
+
+
+
+
+
+
+
+
+            int topElement = myQueue.Peek();
+            Console.WriteLine($"Peek : {topElement}");
+
+
 
             Console.WriteLine(myQueue);
+            Console.WriteLine($"ItemsLength : {myQueue.ItemsLength}");
 
             Console.WriteLine($"큐의 크기 : {myQueue.Count()}");
 
