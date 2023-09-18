@@ -68,6 +68,7 @@ namespace MyCollections
             Console.WriteLine($"Dequeue : {removedElement1}");
 
             myQueue.Enqueue(4);
+            myQueue.Enqueue(5);
             myQueue.Enqueue(6);
 
 

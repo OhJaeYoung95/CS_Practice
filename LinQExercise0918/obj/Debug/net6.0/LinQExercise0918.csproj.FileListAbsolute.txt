@@ -1,0 +1,14 @@
+C:\C#\LinQExercise0918\obj\Debug\net6.0\LinQExercise0918.GeneratedMSBuildEditorConfig.editorconfig
+C:\C#\LinQExercise0918\obj\Debug\net6.0\LinQExercise0918.AssemblyInfoInputs.cache
+C:\C#\LinQExercise0918\obj\Debug\net6.0\LinQExercise0918.AssemblyInfo.cs
+C:\C#\LinQExercise0918\obj\Debug\net6.0\LinQExercise0918.csproj.CoreCompileInputs.cache
+C:\C#\LinQExercise0918\bin\Debug\net6.0\LinQExercise0918.exe
+C:\C#\LinQExercise0918\bin\Debug\net6.0\LinQExercise0918.deps.json
+C:\C#\LinQExercise0918\bin\Debug\net6.0\LinQExercise0918.runtimeconfig.json
+C:\C#\LinQExercise0918\bin\Debug\net6.0\LinQExercise0918.dll
+C:\C#\LinQExercise0918\bin\Debug\net6.0\LinQExercise0918.pdb
+C:\C#\LinQExercise0918\obj\Debug\net6.0\LinQExercise0918.dll
+C:\C#\LinQExercise0918\obj\Debug\net6.0\refint\LinQExercise0918.dll
+C:\C#\LinQExercise0918\obj\Debug\net6.0\LinQExercise0918.pdb
+C:\C#\LinQExercise0918\obj\Debug\net6.0\LinQExercise0918.genruntimeconfig.cache
+C:\C#\LinQExercise0918\obj\Debug\net6.0\ref\LinQExercise0918.dll

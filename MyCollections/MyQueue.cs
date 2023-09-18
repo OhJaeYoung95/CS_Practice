@@ -38,7 +38,6 @@ public class MyQueue<T> : IEnumerable<T>
 
         if (_lastIndex == _items.Length && _firstIndex != 0)
         {
-            Array.Resize(ref _items, _items.Length * 2);
             _lastIndex = 0;
         }
         else if(_lastIndex == _items.Length && _firstIndex == 0)

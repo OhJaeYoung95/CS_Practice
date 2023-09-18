@@ -65,20 +65,56 @@ public class MyLinkedList<T> : IEnumerable<T>
     {
         // 구현
         MyLinkedListNode<T> node = new MyLinkedListNode<T>(value);
-        node.Previous = null;
-        First.Previous = node;
-        node.Next = First;
-        First = node;
+        if (First == null && Last == null)
+        {
+            First = node;
+            First.Previous = null;
+            First.Next = null;
+            Last = First;
+        }
+        else if (Last == null)
+        {
+            node.Previous = null;
+            First.Previous = node;
+            node.Next = First;
+            Last = First;
+            First = node;
+        }
+        else
+        {
+            node.Previous = null;
+            First.Previous = node;
+            node.Next = First;
+            First = node;
+        }
     }
 
     public void AddLast(T value)
     {
         // 구현
         MyLinkedListNode<T> node = new MyLinkedListNode<T>(value);
-        Last.Next = node;
-        node.Previous = Last;
-        node.Next = null;
-        Last = node;
+        if (First == null && Last == null)
+        {
+            Last = node;
+            Last.Previous = null;
+            Last.Next = null;
+            First = Last;
+        }
+        else if(First == null)
+        {
+            node.Next = null;
+            Last.Next = node;
+            node.Previous = Last;
+            First = Last;
+            Last = node;
+        }
+        else
+        {
+            Last.Next = node;
+            node.Previous = Last;
+            node.Next = null;
+            Last = node;
+        }
     }
 
     public MyLinkedListNode<T> AddAfter(MyLinkedListNode<T> node, T value)
